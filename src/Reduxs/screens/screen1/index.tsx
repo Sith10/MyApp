@@ -71,9 +71,20 @@ const Screen_1 = () => {
         />
         <Text>Name:{name}</Text>
         <TouchableOpacity
-          style={styles.DecrementButton}
+          style={[
+            styles.DecrementButton,
+            {backgroundColor: 'blue', borderColor: 'blue'},
+          ]}
           onPress={() => navigation.navigate('FoodForm')}>
           <Text style={styles.Text}>FOOD FORM</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.DecrementButton,
+            {backgroundColor: 'blue', borderColor: 'blue'},
+          ]}
+          onPress={() => navigation.navigate('PostScreen')}>
+          <Text style={styles.Text}>POSTSCREEN</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
