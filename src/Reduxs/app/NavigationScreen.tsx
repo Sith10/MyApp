@@ -1,7 +1,15 @@
 import React from 'react';
-import {Screen_1, FoodForm, FoodList, PostScreen} from '../screens';
+import {
+  Screen_1,
+  FoodForm,
+  FoodList,
+  PostScreen,
+  RegisterScreen,
+  LoginScreen,
+} from '../screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createSwitchNavigator} from '@react-navigation/compat';
 
 const Stack = createStackNavigator();
 
@@ -16,12 +24,25 @@ export const NavigationScreen = (): JSX.Element => {
       </Stack.Navigator>
     );
   };
+  const AuthStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+      </Stack.Navigator>
+    );
+  };
+  const RouteScreen = createSwitchNavigator({
+    Auth: {screen: AuthStack},
+    Home: {screen: homeStack},
+  });
   const MainScreen = () => {
     return (
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <RouteScreen />
+        {/* <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="HomeSack" component={homeStack} />
-        </Stack.Navigator>
+        </Stack.Navigator> */}
       </NavigationContainer>
     );
   };

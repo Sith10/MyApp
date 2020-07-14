@@ -8,9 +8,12 @@ import {
   StyleSheet,
   NativeSyntheticEvent,
   TextInputChangeEventData,
+  Button,
+  Alert,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 import {
   IDecrementCountAction,
   IIncrementCountAction,
@@ -45,6 +48,17 @@ const Screen_1 = () => {
     Data = {name: value};
 
     dispatch(ISetNameAction(Data));
+  };
+
+  const handleLogout = () => {
+    auth()
+      .signOut()
+      .then((user) => {
+        navigation.navigate('Auth');
+      })
+      .catch((error) => {
+        Alert.alert('Logout failed');
+      });
   };
 
   return (
@@ -86,6 +100,8 @@ const Screen_1 = () => {
           onPress={() => navigation.navigate('PostScreen')}>
           <Text style={styles.Text}>POSTSCREEN</Text>
         </TouchableOpacity>
+
+        <Button title="Logout" onPress={handleLogout} />
       </View>
     </SafeAreaView>
   );
