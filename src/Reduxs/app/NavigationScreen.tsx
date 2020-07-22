@@ -6,10 +6,12 @@ import {
   PostScreen,
   RegisterScreen,
   LoginScreen,
+  HomeScreen
 } from '../screens';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createSwitchNavigator} from '@react-navigation/compat';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createSwitchNavigator } from '@react-navigation/compat';
+
 
 const Stack = createStackNavigator();
 
@@ -17,6 +19,7 @@ export const NavigationScreen = (): JSX.Element => {
   const homeStack = () => {
     return (
       <Stack.Navigator>
+        <Stack.Screen name='HomeScreen' component={HomeScreen} />
         <Stack.Screen name="Screen_1" component={Screen_1} />
         <Stack.Screen name="FoodList" component={FoodList} />
         <Stack.Screen name="FoodForm" component={FoodForm} />
@@ -33,8 +36,8 @@ export const NavigationScreen = (): JSX.Element => {
     );
   };
   const RouteScreen = createSwitchNavigator({
-    Auth: {screen: AuthStack},
-    Home: {screen: homeStack},
+    Auth: { screen: AuthStack },
+    Home: { screen: homeStack },
   });
   const MainScreen = () => {
     return (
